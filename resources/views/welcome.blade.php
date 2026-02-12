@@ -45,39 +45,81 @@
 
 
         {{-- RESERVASI & LOKASI --}}
-        <div class="mt-14 max-w-3xl mx-auto">
-            <div class="relative bg-gradient-to-r from-pink-600/20 via-fuchsia-600/10 to-transparent border border-pink-500/30 rounded-2xl p-6 md:p-8 backdrop-blur shadow-lg shadow-pink-500/10">
+     <div class="mt-10 relative max-w-2xl mx-auto">
 
-                <div class="absolute -inset-px rounded-2xl bg-pink-500/10 blur-xl opacity-40 pointer-events-none"></div>
+    <div class="absolute -inset-1 bg-gradient-to-r from-pink-600 via-fuchsia-600 to-purple-600 rounded-3xl blur-xl opacity-30"></div>
 
-                <div class="relative flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+    <div class="relative bg-black/40 backdrop-blur-xl border border-pink-500/20 rounded-3xl p-8 shadow-2xl">
 
-                    <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-pink-600/20 flex items-center justify-center text-pink-500 text-2xl shadow-md shadow-pink-500/20">
-                        📍
-                    </div>
+        <h2 class="text-xl sm:text-2xl font-bold text-pink-400 mb-2 text-center">
+            📍 Reservasi & Ambil Kunci
+        </h2>
 
-                    <div class="mt-10 bg-gradient-to-r from-pink-600/20 to-purple-600/20 p-6 rounded-2xl text-center max-w-2xl mx-auto">
-                         <h2 class="text-lg sm:text-2xl font-bold text-pink-400 mb-2">
-                        📍 Reservasi & Ambil Kunci
-                         </h2>
-                     <p class="text-sm sm:text-base text-gray-300">
-                           Kia Serviced Apartmen Ruko A1 depan parkir motor Tower Pink, pojok kanan dari lobby
-                     </p>
-                    </div>
+        <p class="text-gray-400 text-sm mb-8 text-center">
+            Kia Serviced Apartmen Ruko A1 depan parkir motor Tower Pink, pojok kanan dari lobby
+        </p>
 
+        <form method="POST" 
+              action="{{ route('booking.wa') }}" 
+              autocomplete="off"
+              class="space-y-5">
+            @csrf
 
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                <input name="nama" required placeholder="Nama Pemesan"
+                    class="premium-input">
+
+                <select name="lokasi" required class="premium-input">
+                    <option value="" disabled selected>Pilih Lokasi</option>
+                    <option>Apartment Grand Sentraland</option>
+                    <option>Apartment Mahogany</option>
+                    <option>Rukos Columbus</option>
+                </select>
+
+                <select name="durasi" required class="premium-input">
+                    <option value="" disabled selected>Durasi Menginap</option>
+                    <option>Transit/Short time</option>
+                    <option>Fullday</option>
+                </select>
+
+                <input type="date" name="tanggal" required
+                    class="premium-input"
+                    min="{{ date('Y-m-d') }}"
+                    onfocus="this.showPicker()">
+
+                <input type="time" name="jam" required
+                    class="premium-input"
+                    onfocus="this.showPicker()">
+
+                <input name="hari" required placeholder="Hari (Senin)"
+                    class="premium-input">
+
+                <input name="request_tambahan"
+                    placeholder="Request Tambahan"
+                    class="premium-input md:col-span-2">
+
             </div>
-        </div>
+
+           <div class="text-center mt-6">
+                <button type="submit"
+                    class="px-10 py-3 rounded-xl font-semibold text-black 
+                           bg-gradient-to-r from-green-400 to-emerald-500 
+                           hover:from-green-500 hover:to-emerald-600 
+                           transition-all duration-300 shadow-lg shadow-green-500/20">
+                    Kirim Booking via WhatsApp
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
 
         {{-- CTA BUTTONS --}}
         <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/rooms" class="px-6 py-3 bg-pink-600 hover:bg-pink-700 rounded-xl font-semibold text-white text-center">
                 Lihat Tipe Kamar
-            </a>
-            <a href="https://wa.me/6289531710777" target="_blank"
-            class="px-6 py-3 border border-green-500 text-green-400 hover:bg-green-500 hover:text-black rounded-xl font-semibold text-center">
-                Chat via WhatsApp
             </a>
         </div>
 

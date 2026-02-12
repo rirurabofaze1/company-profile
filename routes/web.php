@@ -47,3 +47,7 @@ Route::prefix('admin')
 Route::view('/about', 'about')->name('about');
 
 Route::view('/contact', 'contact')->name('contact');
+
+use App\Http\Controllers\BookingController;
+
+Route::post('/booking-wa', [BookingController::class, 'send'])->name('booking.wa');

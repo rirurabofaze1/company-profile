@@ -1,4 +1,25 @@
 @import "tailwindcss";
+
+/* === CUSTOM COMPONENTS === */
+@layer components {
+
+    .premium-input {
+        @apply w-full px-4 py-3 rounded-xl bg-black/60 border border-pink-500/20 text-white transition-all duration-300 outline-none;
+    }
+
+    .premium-input::placeholder {
+        color: rgba(255,255,255,0.4);
+    }
+
+    .premium-input:focus {
+        @apply border-pink-500;
+        box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.2);
+        background: rgba(0, 0, 0, 0.7);
+    }
+
+}
+
+/* === HERO EFFECT === */
 .hero-glow {
     position: absolute;
     inset: 0;
@@ -27,4 +48,3 @@
     from { text-shadow: 0 0 30px rgba(255, 0, 128, 1); opacity: 0; }
     to { text-shadow: 0 0 12px rgba(255, 0, 128, 0.6); opacity: 1; }
 }
-
